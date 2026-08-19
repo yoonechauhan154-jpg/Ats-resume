@@ -17,6 +17,12 @@ export function Header() {
           <span className="hidden sm:inline-flex items-center rounded-full border px-3 py-1 text-xs">
             100% free · No signup · Resume never stored
           </span>
+          <Link href="/guides" className="hover:text-foreground">
+            Guides
+          </Link>
+          <Link href="/faq" className="hover:text-foreground">
+            FAQ
+          </Link>
           <Button asChild size="sm">
             <Link href="/tool">Analyze my resume</Link>
           </Button>

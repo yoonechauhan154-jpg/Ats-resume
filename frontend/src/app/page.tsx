@@ -4,9 +4,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, BadgeCheck, FileText, Lock, Search, ShieldCheck, Sparkles } from "lucide-react";
 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { FAQS } from "@/lib/faqs";
 
 const FEATURES = [
   {
@@ -126,6 +128,23 @@ export default function Landing() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t bg-muted/30">
+        <div className="container max-w-3xl px-4 py-14 md:px-6">
+          <h2 className="text-center text-2xl font-bold tracking-tight sm:text-3xl">
+            Frequently asked questions
+          </h2>
+          <Accordion type="single" collapsible className="mt-8">
+            {FAQS.map((faq, i) => (
+              <AccordionItem key={faq.q} value={`faq-${i}`}>
+                <AccordionTrigger>{faq.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">{faq.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
