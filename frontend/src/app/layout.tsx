@@ -3,9 +3,12 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
-  title: "ATS Scope - Free Resume ATS Optimizer & Cover Letter Writer",
+  title: "ATS Scope — Free Resume Matching, Explained",
   description:
-    "Free, no-signup ATS resume checker. Get a transparent 0-100 compatibility score, missing keywords with context, format issue detection, AI bullet rewrites, and a job-synced cover letter. Your resume is never stored.",
+    "Meet ATS Scope: compare your resume with a job description, understand keyword gaps, and get practical fixes. Free to use, with no account required.",
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/",
+  },
   verification: {
     google: "0flRTVdHxlYuHeF6djtBuGFGjbqJB_hcysGRkTAFnqc",
   },

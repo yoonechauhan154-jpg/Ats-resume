@@ -69,7 +69,6 @@ export function BeforeAfterDiff({
   };
 
   const reportBad = () => {
-    console.log("report-bad-suggestion", { original, optimized });
     setReported(true);
     setTimeout(() => setReported(false), 2500);
   };
@@ -82,8 +81,8 @@ export function BeforeAfterDiff({
           Before / After — AI Rewrite
         </CardTitle>
         <CardDescription>
-          Rewrites your bullet points against this JD. Every number, date and fact is preserved —
-          the AI only rephrases, never invents.
+          Rewrites your bullet points against this JD. Numbers are checked, and the model is
+          instructed to rephrase your existing facts rather than add new claims.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

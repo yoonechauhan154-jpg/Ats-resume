@@ -70,8 +70,8 @@ export function CoverLetterPanel({ result, jd }: CoverLetterPanelProps) {
           JD-Synced Cover Letter
         </CardTitle>
         <CardDescription>
-          Written only from facts in your resume, keyword-aligned to this job. No
-          invented experience, ever.
+          Written from the facts in your resume and keyword-aligned to this job. The model is
+          instructed not to add unsupported experience; review the letter before using it.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

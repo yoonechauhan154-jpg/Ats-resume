@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { ScoreCard } from "@/components/results/ScoreCard";
 import { ScoreBreakdown } from "@/components/results/ScoreBreakdown";
 import { FormatIssuesList } from "@/components/results/FormatIssuesList";
@@ -7,9 +9,12 @@ import { CoverLetterSection } from "@/components/results/CoverLetterSection";
 import { ShareableCard } from "@/components/results/ShareableCard";
 import { MOCK_RESULT, MOCK_OPTIMIZED } from "@/lib/mock-data";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Component Preview - ATS Scope",
   robots: { index: false },
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/preview",
+  },
 };
 
 export default function PreviewPage() {

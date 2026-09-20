@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Script from "next/script";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/faqs";
 
 export const metadata: Metadata = {
-  title: "FAQ - ATS Scope",
+  title: "ATS Resume Checker FAQ: Scores & Privacy | ATS Scope",
   description:
-    "Answers about ATS resume checking: what an ATS is, whether resumes get auto-rejected, what causes a poor score, PDF vs DOCX, keyword usage, and how ATS Scope scores your resume.",
+    "Understand ATS Scope's scores, supported files, privacy practices, and limitations—and how to use resume recommendations responsibly.",
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/faq",
+  },
 };
 
 export default function FaqPage() {
@@ -38,14 +41,21 @@ export default function FaqPage() {
         <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground sm:text-lg">
           Everything you might want to know about ATS resume checking and how ATS Scope works.
         </p>
-        <Accordion type="single" collapsible className="mt-8">
-          {FAQS.map((faq, i) => (
-            <AccordionItem key={faq.q} value={`faq-${i}`}>
-              <AccordionTrigger>{faq.q}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">{faq.a}</AccordionContent>
-            </AccordionItem>
+        <div className="mt-8 space-y-2">
+          {FAQS.map((faq) => (
+            <details key={faq.q} className="border-b">
+              <summary className="cursor-pointer py-4 font-medium">{faq.q}</summary>
+              <p className="pb-4 text-sm text-muted-foreground">{faq.a}</p>
+              {faq.q === "How is my ATS score calculated?" && (
+                <p className="pb-4 text-sm">
+                  <Link href="/methodology" className="text-primary underline">
+                    Read the full scoring methodology
+                  </Link>
+                </p>
+              )}
+            </details>
           ))}
-        </Accordion>
+        </div>
       </section>
     </>
   );

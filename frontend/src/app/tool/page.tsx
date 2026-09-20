@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 import { UploadForm } from "@/components/upload/UploadForm";
 import { LoadingStep } from "@/components/upload/LoadingStep";
@@ -52,17 +53,44 @@ export default function ToolPage() {
     setStep(1);
   };
 
+  const softwareApplicationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "ATS Scope",
+    url: "https://ats-resumecheck.vercel.app/tool",
+    description:
+      "Upload a PDF or DOCX and paste a job description. Get a free ATS compatibility report with keyword gaps, formatting checks, and rewrites. No signup.",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
   return (
-    <div className="container max-w-6xl px-4 py-8 md:px-6 md:py-10">
+    <>
+      <script
+        id="tool-software-application-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
+      />
+      <div className="container max-w-6xl px-4 py-8 md:px-6 md:py-10">
       {/* Tool header */}
       <header className="mb-8">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Check your resume against a job
+          Free ATS resume checker—no signup
         </h1>
         <p className="mt-2 max-w-2xl text-muted-foreground">
           Paste a job description and upload your resume (PDF or DOCX). You get a transparent
           0–100 compatibility score, the exact JD keywords you&apos;re missing, ATS format issues,
           and AI-powered rewrites — all free, no signup.
+        </p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          <Link href="/methodology" className="text-primary underline">
+            See how the score is calculated
+          </Link>
         </p>
       </header>
 
@@ -79,6 +107,40 @@ export default function ToolPage() {
         />
       )}
 
+      {step === 1 && (
+        <div className="mt-12 grid gap-6 border-t pt-10 md:grid-cols-3">
+          <section aria-labelledby="what-we-check-heading">
+            <h2 id="what-we-check-heading" className="text-lg font-semibold">
+              What we check
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Keyword match, formatting compatibility, section coverage, and content quality. The
+              report shows how each area contributes to your score.
+            </p>
+          </section>
+          <section aria-labelledby="limitations-heading">
+            <h2 id="limitations-heading" className="text-lg font-semibold">
+              Limitations
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Your score estimates parsing and matching quality. It does not guarantee an
+              interview or predict a hiring decision.
+            </p>
+          </section>
+          <section aria-labelledby="learn-more-heading">
+            <h2 id="learn-more-heading" className="text-lg font-semibold">
+              Learn more
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <Link href="/methodology" className="text-primary underline">
+                Read the scoring methodology
+              </Link>{" "}
+              or browse the <Link href="/faq" className="text-primary underline">FAQ</Link>.
+            </p>
+          </section>
+        </div>
+      )}
+
       {/* Step 2: loading */}
       {step === 2 && <LoadingStep />}
 
@@ -92,6 +154,7 @@ export default function ToolPage() {
           onReset={handleReset}
         />
       )}
-    </div>
+      </div>
+    </>
   );
 }

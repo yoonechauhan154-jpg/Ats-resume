@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "5 ATS Resume Myths That Are Costing You Interviews",
+  title: "5 ATS Resume Myths: Scores, Keywords & Rejection",
   description:
-    "The five most repeated ATS resume myths — auto-rejection, keyword stuffing, one-page requirements, creative templates, and the ATS as the villain — and the reality behind each.",
+    "Examine five common ATS resume myths about rejection, keyword stuffing, length, and formatting—with sources and practical next steps.",
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/guides/ats-resume-myths",
+  },
 };
 
 const MYTHS = [
@@ -30,8 +35,29 @@ const MYTHS = [
 ];
 
 export default function AtsResumeMythsPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ats-resumecheck.vercel.app/" },
+      { "@type": "ListItem", position: 2, name: "Guides", item: "https://ats-resumecheck.vercel.app/guides" },
+      { "@type": "ListItem", position: 3, name: "5 ATS Resume Myths", item: "https://ats-resumecheck.vercel.app/guides/ats-resume-myths" },
+    ],
+  };
+
   return (
-    <article className="container max-w-3xl px-4 py-14 md:px-6">
+    <>
+      <Script id="guide-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <article className="container max-w-3xl px-4 py-14 md:px-6">
+        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li><Link href="/" className="hover:text-foreground">Home</Link></li>
+            <li aria-hidden="true">&gt;</li>
+            <li><Link href="/guides" className="hover:text-foreground">Guides</Link></li>
+            <li aria-hidden="true">&gt;</li>
+            <li aria-current="page">5 ATS Resume Myths</li>
+          </ol>
+        </nav>
       <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
         5 ATS Resume Myths That Are Costing You Interviews
       </h1>
@@ -43,6 +69,7 @@ export default function AtsResumeMythsPage() {
           </section>
         ))}
       </div>
-    </article>
+      </article>
+    </>
   );
 }

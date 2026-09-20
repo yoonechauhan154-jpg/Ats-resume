@@ -82,7 +82,7 @@ export function RewritePanel({ result, jd }: RewritePanelProps) {
         </CardTitle>
         <CardDescription>
           Pick the bullets you want aligned to this job description. Every change is
-          flagged in the diff; numbers and facts are never altered or invented.
+          flagged in the diff; numbers are checked and the model is instructed to use your resume as its source of facts.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

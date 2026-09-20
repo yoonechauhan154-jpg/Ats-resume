@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Analyze Your Resume - ATS Scope",
+  title: "Free ATS Resume Checker — No Signup | ATS Scope",
   description:
-    "Paste a job description, upload your resume (PDF/DOCX), and get a transparent 0-100 ATS compatibility score with missing keywords, format issues, and AI rewrites. Free, no signup, resume never stored.",
+    "Upload a PDF or DOCX and paste a job description. Get a free ATS compatibility report with keyword gaps, formatting checks, and rewrites. No signup.",
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/tool",
+  },
 };
 
 export default function ToolLayout({ children }: { children: React.ReactNode }) {

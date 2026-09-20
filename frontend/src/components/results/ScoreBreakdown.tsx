@@ -8,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import type { ScoreComponent } from "@/lib/types";
 
 interface BarDef {
-  key: "keyword_match" | "content" | "format_compat";
+  key: "keyword_match" | "format_compat" | "section_coverage" | "content_quality";
   label: string;
   outOf: number;
   why: string;
@@ -18,33 +18,39 @@ const BARS: BarDef[] = [
   {
     key: "keyword_match",
     label: "Keyword Match",
-    outOf: 50,
-    why: "Recruiters and ATS rank you on how many exact JD keywords appear in your resume. This is usually the single biggest lever for interviews.",
-  },
-  {
-    key: "content",
-    label: "Content Relevance",
-    outOf: 30,
-    why: "Whether your resume has the core sections a recruiter screens for and whether your bullets are quantified and achievement-focused.",
+    outOf: 40,
+    why: "Compares job-description keywords with the extracted resume text. Exact terms and close semantic equivalents can count as present.",
   },
   {
     key: "format_compat",
-    label: "Format Score",
-    outOf: 20,
-    why: "Tables, columns, images and unusual fonts make it hard for ATS parsers to extract your text correctly — a great resume can still get garbled.",
+    label: "Format Compatibility",
+    outOf: 30,
+    why: "Checks common parsing risks such as scanned documents, tables, columns, images, unusual fonts, missing contact details, and very short resumes.",
+  },
+  {
+    key: "section_coverage",
+    label: "Section Coverage",
+    outOf: 15,
+    why: "Checks whether the standard summary, experience, education, and skills sections are detected.",
+  },
+  {
+    key: "content_quality",
+    label: "Content Quality",
+    outOf: 15,
+    why: "Scores quantified outcomes, action-verb usage, and whether the extracted resume length is within the scorer's 250-750 word range.",
   },
 ];
 
 function pointsFor(components: ScoreComponent[], key: BarDef["key"]): number {
   const byName: Record<string, number> = {};
   for (const c of components) byName[c.name] = c.score;
-  if (key === "keyword_match") return Math.round((byName["keyword_match"] ?? 0) * 0.5);
-  if (key === "content") {
-    const quality = byName["content_quality"] ?? 0;
-    const sections = byName["section_coverage"] ?? 0;
-    return Math.round(((quality + sections) / 2) * 0.3);
-  }
-  return Math.round((byName["format_compat"] ?? 0) * 0.2);
+  const weights: Record<BarDef["key"], number> = {
+    keyword_match: 0.4,
+    format_compat: 0.3,
+    section_coverage: 0.15,
+    content_quality: 0.15,
+  };
+  return Math.round((byName[key] ?? 0) * weights[key]);
 }
 
 function barColor(score: number, outOf: number): string {
@@ -99,8 +105,8 @@ export function ScoreBreakdown({ components }: { components: ScoreComponent[] })
           })}
         </TooltipProvider>
         <p className="pt-1 text-xs text-muted-foreground">
-          Breakdown uses a 50 / 30 / 20 weighting to show where points are lost. Your overall score
-          (top) is the official weighted score and is what the score ring shows.
+          These are the official production weights used to calculate your overall score. Read the{" "}
+          <a href="/methodology" className="text-primary underline">full methodology</a>.
         </p>
       </CardContent>
     </Card>

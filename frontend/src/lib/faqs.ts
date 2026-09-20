@@ -29,11 +29,11 @@ export const FAQS = [
   },
   {
     q: "How is my ATS score calculated?",
-    a: "We check three things: keyword and skill overlap with the job description, formatting issues that would break real ATS parsers (tables, columns, missing text), and section completeness. The score reflects how a real parser would likely read your resume, not a guess.",
+    a: "We calculate a weighted score from four components: keyword match (40%), format compatibility (30%), section coverage (15%), and content quality (15%). Format issues such as tables, columns, or missing text may cause parsing problems. The score reflects how our checks evaluate your resume against the job description, not a hiring prediction.",
   },
   {
     q: "Can the AI rewrite invent skills I don't have?",
-    a: "No — our rewrite tool only rephrases and reorganizes your existing content to better match the job description's language. It never adds skills, tools, or experience you haven't already listed.",
+    a: "The rewrite model is instructed to only rephrase and reorganize your existing content to match the job description's language, not add new skills or experience. Numbers and metrics are checked, and some unsupported tool-like terms may be removed when resume context is provided. Review the result before using it.",
   },
   {
     q: "How often should I rescan my resume?",

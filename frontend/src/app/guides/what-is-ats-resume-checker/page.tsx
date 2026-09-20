@@ -1,14 +1,40 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "What Is an ATS Resume Checker, and Do You Actually Need One?",
+  title: "What Is an ATS Resume Checker? Uses & Limits",
   description:
-    "What an ATS resume checker does, whether you actually need one, who benefits most, and why it removes the most common invisible failure point in a job search.",
+    "Learn what ATS resume checkers measure, how job matching differs from parsing, and why a checker score cannot predict a hiring decision.",
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/guides/what-is-ats-resume-checker",
+  },
 };
 
 export default function WhatIsAtsResumeCheckerPage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ats-resumecheck.vercel.app/" },
+      { "@type": "ListItem", position: 2, name: "Guides", item: "https://ats-resumecheck.vercel.app/guides" },
+      { "@type": "ListItem", position: 3, name: "What Is an ATS Resume Checker?", item: "https://ats-resumecheck.vercel.app/guides/what-is-ats-resume-checker" },
+    ],
+  };
+
   return (
-    <article className="container max-w-3xl px-4 py-14 md:px-6">
+    <>
+      <Script id="guide-breadcrumb-jsonld" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <article className="container max-w-3xl px-4 py-14 md:px-6">
+        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted-foreground">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li><Link href="/" className="hover:text-foreground">Home</Link></li>
+            <li aria-hidden="true">&gt;</li>
+            <li><Link href="/guides" className="hover:text-foreground">Guides</Link></li>
+            <li aria-hidden="true">&gt;</li>
+            <li aria-current="page">What Is an ATS Resume Checker?</li>
+          </ol>
+        </nav>
       <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
         What Is an ATS Resume Checker, and Do You Actually Need One?
       </h1>
@@ -46,6 +72,7 @@ export default function WhatIsAtsResumeCheckerPage() {
           candidate whose resume simply never gets read the way they intended.
         </p>
       </div>
-    </article>
+      </article>
+    </>
   );
 }

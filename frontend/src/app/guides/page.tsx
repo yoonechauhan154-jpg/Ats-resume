@@ -5,9 +5,12 @@ import { ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Guides - ATS Scope",
+  title: "ATS Resume Guides: Formatting & Keywords | ATS Scope",
   description:
-    "Practical guides on ATS resume checking: what an ATS resume checker does, the biggest ATS myths, and the 2026 ATS-friendly resume format.",
+    "Practical guides to resume formatting, job-description keywords, and ATS checker limitations, with examples you can apply to your own resume.",
+  alternates: {
+    canonical: "https://ats-resumecheck.vercel.app/guides",
+  },
 };
 
 const GUIDES = [

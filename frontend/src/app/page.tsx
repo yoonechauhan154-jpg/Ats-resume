@@ -24,7 +24,7 @@ const FEATURES = [
   {
     icon: FileText,
     title: "Format checker",
-    text: "Tables, columns, images and fonts that break ATS parsing — caught for you.",
+    text: "Tables, columns, images and fonts that may cause parsing problems — caught for you.",
   },
   {
     icon: ShieldCheck,
@@ -54,8 +54,7 @@ export default function Landing() {
               <Sparkles className="mr-1 h-3 w-3 text-primary" /> 100% free · No signup · Resume never stored
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-              Is your resume surviving{" "}
-              <span className="text-primary">ATS screening</span>?
+              Understand your resume&apos;s match to the job
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground sm:text-lg">
               Fix the keyword mismatch and formatting issues that keep otherwise strong resumes
@@ -152,7 +151,7 @@ export default function Landing() {
       <section className="container max-w-4xl px-4 py-16 text-center md:px-6">
         <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
           <Lock className="h-4 w-4" />
-          <span>Uploads are processed in memory and deleted immediately. No account, no tracking of your resume.</span>
+          <span>Resume files are processed temporarily and normally deleted immediately after parsing. No account, no resume database.</span>
         </div>
         <Button asChild size="lg" className="mt-6">
           <Link href="/tool">
