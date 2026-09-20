@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { SEO_GUIDES } from "@/lib/seo-guides";
+
 const BASE_URL = "https://ats-resumecheck.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -44,5 +46,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    ...SEO_GUIDES.map((guide) => ({
+      url: `${BASE_URL}/guides/${guide.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ];
 }

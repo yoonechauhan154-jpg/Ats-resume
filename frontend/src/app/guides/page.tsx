@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { SEO_GUIDES } from "@/lib/seo-guides";
 
 export const metadata: Metadata = {
   title: "ATS Resume Guides: Formatting & Keywords | ATS Scope",
@@ -34,6 +35,15 @@ const GUIDES = [
   },
 ];
 
+const ALL_GUIDES = [
+  ...GUIDES,
+  ...SEO_GUIDES.map((guide) => ({
+    href: `/guides/${guide.slug}`,
+    title: guide.title,
+    excerpt: guide.description,
+  })),
+];
+
 export default function GuidesIndexPage() {
   return (
     <section className="container max-w-3xl px-4 py-14 md:px-6">
@@ -43,7 +53,7 @@ export default function GuidesIndexPage() {
         way you intended.
       </p>
       <div className="mt-8 space-y-4">
-        {GUIDES.map((g) => (
+          {ALL_GUIDES.map((g) => (
           <Link key={g.href} href={g.href} className="group block">
             <Card className="transition-colors group-hover:border-primary/50">
               <CardContent className="flex items-center justify-between gap-4 p-5">
