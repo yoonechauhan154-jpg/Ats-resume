@@ -51,6 +51,22 @@ const config: Config = {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",
         },
+        /* ATS Scope brand palette — trust-focused corporate blue.
+           Keep in sync with the CSS variables in src/app/globals.css. */
+        navy: "#0F2A4A",
+        steel: {
+          DEFAULT: "#2F5D8A",
+          strong: "#274F76",
+          tint: "#EDF2F8",
+        },
+        ink: "#12181F",
+        paper: "#FAFBFC",
+        greyblue: "#64748B",
+        hairline: "#DDE4EC",
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        serif: ["var(--font-serif)", "Iowan Old Style", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

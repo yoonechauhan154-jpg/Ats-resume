@@ -4,52 +4,54 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    /* ATS Scope visual system — trust-focused corporate blue.
+       Hex equivalents live in tailwind.config.ts (navy/steel/paper/...). */
+    --background: 210 25% 98%; /* paper white #FAFBFC */
+    --foreground: 212 27% 10%; /* ink #12181F */
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 212 27% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --popover-foreground: 212 27% 10%;
+    --primary: 210 49% 36%; /* slate blue #2F5D8A */
+    --primary-foreground: 210 25% 98%;
     --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary-foreground: 212 27% 10%;
     --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --success: 142 76% 36%;
-    --success-foreground: 210 40% 98%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 222 47% 11%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
-    --radius: 0.5rem;
+    --muted-foreground: 215 16% 47%; /* grey-blue #64748B */
+    --accent: 210 44% 95%;
+    --accent-foreground: 213 66% 17%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 210 25% 98%;
+    --success: 141.5 70.7% 29.4%; /* #16803C — reserved for the match-score "good" indicator */
+    --success-foreground: 210 25% 98%;
+    --warning: 38 92% 40%;
+    --warning-foreground: 212 27% 10%;
+    --border: 212 28% 90%; /* hairline #DDE4EC */
+    --input: 212 28% 90%;
+    --ring: 210 49% 36%;
+    --radius: 0.375rem;
   }
 
   .dark {
-    --background: 222 47% 7%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
+    --background: 213 45% 8%;
+    --foreground: 210 25% 98%;
+    --card: 213 45% 10%;
+    --card-foreground: 210 25% 98%;
+    --popover: 213 45% 10%;
+    --popover-foreground: 210 25% 98%;
+    --primary: 210 55% 58%;
+    --primary-foreground: 213 45% 10%;
+    --secondary: 213 33% 17%;
+    --secondary-foreground: 210 25% 98%;
+    --muted: 213 33% 17%;
+    --muted-foreground: 213 20% 68%;
+    --accent: 213 33% 17%;
+    --accent-foreground: 210 25% 98%;
     --destructive: 0 63% 45%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 217 91% 60%;
+    --destructive-foreground: 210 25% 98%;
+    --border: 213 33% 20%;
+    --input: 213 33% 20%;
+    --ring: 210 55% 58%;
   }
 }
 
@@ -57,7 +59,30 @@
   * {
     @apply border-border;
   }
+  html {
+    @apply scroll-smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  /* Headlines are set in the serif face site-wide. */
+  h1,
+  h2 {
+    @apply font-serif;
+  }
+  ::selection {
+    @apply bg-accent text-navy;
+  }
+  /* Keyboard focus is always visible, in the brand blue. Components that draw
+     their own ring opt out with focus-visible:outline-none. */
+  :focus-visible {
+    outline: 2px solid #2f5d8a;
+    outline-offset: 2px;
   }
 }
